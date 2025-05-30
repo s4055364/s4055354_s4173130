@@ -1,0 +1,145 @@
+.body{
+    background-color: hsl(0, 0%, 53%);
+}
+
+
+h1{
+    text-align: center;
+}
+h2{
+    text-align: center;
+}
+.navbar ul{
+    list-style-type: none;
+    background-color: hsl(207, 100%, 50%);
+    padding: 10%px;
+    margin: 0px;
+    overflow: hidden;
+    font-size: 2em;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.navbar a{
+    color: black;
+    text-decoration : none;
+    padding: 15px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+.navbar a:hover{
+    background-color: hsl(207, 100%, 30%);
+}
+
+.navbar li{
+    float: left;
+    
+}
+#missionstatbox{
+
+    width: 100%;
+    height: 300px;
+    position: relative;
+    text-decoration: none;
+}
+#missionbox{
+    width: 1500px;
+    height: 300px;
+    background-color: rgba(0, 0, 0, 0.493);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-decoration: none;
+}
+
+#missionbutton{
+    width: 160px;
+    height: 40px;
+    background-color: hsl(0, 0%, 30%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 1.5em;
+    color: white;
+    text-decoration: none;
+}
+#missionbutton a{
+    text-decoration: none;
+    color: white;
+}
+
+#missionbutton:hover{
+    background-color: hsl(0, 0%, 20%);
+    text-decoration: none;
+    text-align: center;
+    
+}
+.container{
+    display: flex;
+    border: 0px solid black;
+    align-items: flex-start;
+    text-decoration: none;
+
+    justify-content: space-evenly;
+
+}
+.container a{
+    text-decoration: none;
+    color: white;
+}
+.box{
+    width: 200px;
+    height: 100px;
+    font-size: 1.5em;
+    text-align:center;
+    padding: 20px;
+    border-radius: 15;
+}
+
+#box1{
+    background-color: hsl(207, 100%, 50%);
+}
+#box1:hover{
+    background-color: hsl(207, 100%, 40%);
+}
+#box2{
+    background-color: hsl(207, 100%, 50%);
+}
+#box2:hover{
+    background-color: hsl(207, 100%, 40%);
+}
+#box3:hover{
+    background-color: hsl(207, 100%, 40%);
+}
+#box3{
+    background-color: hsl(207, 100%, 50%);
+}
+#box4:hover{
+    background-color: hsl(207, 100%, 40%);
+}
+#box4{
+    background-color: hsl(207, 100%, 50%);
+}
+
+#box9{
+    background-color: hsl(207, 100%, 50%);
+    color: white;
+    font-size: 1.1em;
+}
+#box10{
+    background-color: hsl(207, 100%, 50%);
+    color: white;
+    font-size: 1.1em;
+}#box11{
+    background-color: hsl(207, 100%, 50%);
+    color: white;
+    font-size: 1.1em;
+}#box12{
+    background-color: hsl(207, 100%, 50%);
+    color: white;
+    font-size: 1.1em;
+}
