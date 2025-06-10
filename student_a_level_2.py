@@ -1,13 +1,42 @@
 import pyhtml
+
+
+# one form --> grab values from the drop list --> run query to get the list of weather stations.  --> run second query using the result of the first query.
+# then build first table 
+# then build second table.
+
+
 def get_page_html(form_data):
     print("About to return page 2")
+    selected_state = False
+    starting_lat = False
+    ending_lat = False
+    
+    if form_data:
+        selected_state = form_data.get('state')
+        starting_lat = form_data.get('start_lat')
+        ending_lat = form_data.get('ending_lat')
+
+    states_query = "SELECT name FROM state ORDER by name"
+    states_results = pyhtml.get_results_from_query("database/climate.db", states_query)
+    
+    if selected_state and starting_lat and ending_lat:
+        state_latitude_query = F"SELECT ws.site_id, ws.name AS station_name, ws.latitude, ws.longitude, r.name AS region_name, s.name AS state_name FROM weather_station ws INNER JOIN region r ON ws.region_id = r.id INNER JOIN state s ON ws.state_id = s.id WHERE s.name = {selected_state} AND ws.latitude BETWEEN {ending_lat} AND {starting_lat} ORDER BY ws.latitude DESC"
+        state_latitude_results = pyhtml.get_results_from_query("database/climate.db", state_latitude_query)
+        page_html += "<table border ='1'>"
+        for row in state_latitude_results:
+            page_html += "<tr>"
+            for cell in row:
+                page_html += f"<td>{cell}</td>"
+            page_html+= "</tr>"
+        page_html += "</table>"
     
     page_html=f"""<!DOCTYPE html>
     <html lang="en">
     <head>
         <title> Level2A</title>
         <link rel="stylesheet" href="level2A.css">
-
+        
         <body>
             <nav class="navbar">
                 <ul>
@@ -39,33 +68,28 @@ def get_page_html(form_data):
             
             <h1>View Climate Change by Region</h1>
             <br>
-            <h2>Select your desired state:</h2>
-            
-            <form action="index.php" aria-placeholder="Australian State" method="POST">
-                <select id="AustralianState">
-                    <option value="AAT">AAT</option>
-                    <option value="AET">AET</option>
-                    <option value="NSW">NSW</option>
-                    <option value="NT">NT</option>
-                    <option value="QLD">QLD</option>
-                    <option value="SA">SA</option>
-                    <option value="TAS">TAS</option>
-                    <option value="VIC">VIC</option>
-                    <option value="WA">WA</option>
-
-                </select>
-            </form>
+            <h2>Select your desired state:</h2>"""
+    page_html+=F"""    
+            <form method="GET">
+                <select id="AustralianState" name ='state'>
+                    {"".join([f'<option value="{state[0]}" {"selected" if state[0] == selected_state else ""}>{state[0]}</option>' for state in states_results])}
+                    </select>
 
             <h2>Enter your starting and ending latitude</h2>
-            <form action="index.php" method ="post">
+
                 <label for="Starting Latitude">Starting Latitude:</label>
-                
-                <input type = 'text' id="Starting Latitude" placeholder="Eg -140">
+                <input type = 'text' id="Starting Latitude" name='start_lat' placeholder="Eg -140">
                 <label for="Ending Latitude">Ending Latitude:</label>
-                <input type = 'text' id="Ending Latitude" placeholder="Eg -140">
+                <input type = 'text' id="Ending Latitude" name='ending_lat' placeholder="Eg -140">
                 <input type="Submit">
                 <input type="Reset">
             </form>
+        
+
+            <br>
+            <br>
+            <br>
+
             <h2> Or type your desired region</h2>
             <form action="index.php" method ="post">
                 <h2></h2><input type = 'text'>
@@ -73,7 +97,7 @@ def get_page_html(form_data):
             </form>
             <br><br><br><br><br><br><br><br><br><br><br>
             <h3>Find more information on your station</h3>
-            <form action="index.php" method ="post">
+            <form method ="post">
                 <h2>Enter your desired weather Metric</h2><input type = 'text'>
                 <input type="Submit">
             </form> 

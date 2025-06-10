@@ -78,6 +78,7 @@ def get_page_html(form_data):
         for row in results:
             page_html+='<option value="'+str(row[0])+'"\>'+str(row[1])+'</option>'
     else:
+        
         #If no movie star was chosen, we create a dummy list and make it disabled so the user sees the movie drop down
         #but they can't access it.
         page_html+="disabled>"
