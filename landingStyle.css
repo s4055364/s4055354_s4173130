@@ -2,6 +2,21 @@
     background-color: hsl(0, 0%, 53%);
 }
 
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    gap: 10px
+}
+#AustralianState {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+}
 
 h1{
     text-align: center;
