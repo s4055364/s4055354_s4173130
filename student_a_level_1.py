@@ -39,7 +39,7 @@ def get_page_html(form_data):
         else:
             highest_temp = "No data"
             highest_temp_station = ""
-        highest_temp_date = ""
+            highest_temp_date = ""
         
         # THIS IS TO FIND THE LOWEST TEMPERATURE RECORDED IN THE STATE
         
