@@ -56,7 +56,7 @@ def get_results_from_query(database,query):
     cursor.execute(query)
     debugging_helper("done\n")
     debugging_helper("Fetching results...\n")
-    results = cursor.fetchall();
+    results = cursor.fetchall()
     debugging_helper(results)
     debugging_helper("\n------------------------")
     return results
