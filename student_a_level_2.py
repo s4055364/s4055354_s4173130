@@ -81,6 +81,7 @@ def get_page_html(form_data):
     page_html = f"""<!DOCTYPE html>
     <html lang="en">
     <head>
+        <meta charset="UTF-8"> 
         <title>Level2A</title>
         <link rel="stylesheet" href="level2A.css">
     </head>    
