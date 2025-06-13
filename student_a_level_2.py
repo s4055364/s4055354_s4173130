@@ -40,10 +40,10 @@ def get_page_html(form_data):
     ]
     
     if form_data:
-        selected_state = form_data.get("state")[0] if form_data.get("state") else False
-        starting_lat = form_data.get('start_lat')[0] if form_data.get('start_lat') else False
-        ending_lat = form_data.get('ending_lat')[0] if form_data.get('ending_lat') else False
-        weather_metric = form_data.get("metric")[0] if form_data.get("metric") else False
+        selected_state = form_data.get("state")[0] 
+        starting_lat = form_data.get('start_lat')[0] 
+        ending_lat = form_data.get('ending_lat')[0] 
+        weather_metric = form_data.get("metric")[0] 
 
     print(f"Extracted values - State: {selected_state}, Start: {starting_lat}, End: {ending_lat}", flush=True)
 
@@ -89,13 +89,13 @@ def get_page_html(form_data):
     <body>
         <nav class="navbar">
             <ul>
-                <li><a href="LandingPage.html">
-                    <img src="without background.png" height=80>
-                </a></li>
-                <li><a href="LandingPage.html">Home</a></li>
-                <li><a href="Mission.html">Our Mission</a></li>
-                <li><a href="tools.html">Our Tools</a></li>
-                <li><a href="Contact.html">Contact Us</a></li>
+                    <li><a href="http://localhost/">
+                        <img src="without background.png" height=80>
+                    </a></li>
+                    <li><a href="http://localhost/">Home</a></li>
+                    <li><a href="http://localhost/page1b">Our Mission</a></li>
+                    <li><a href="tools.html">Our Tools</a></li>
+                    <li><a href="Contact.html">Contact Us</a></li>
             </ul>
         </nav>
         
@@ -110,6 +110,7 @@ def get_page_html(form_data):
 
             <h2>Enter your starting and ending latitude</h2>
             <h5>Please note that Australia is within a negative latitude. Therefore starting latitude must be 0 and below</h5>
+            <h5>Addiotionally also note that Starting Latitude must be a higher value than Ending Latitude"</h5>
             <label for="Starting Latitude">Starting Latitude:</label>
             <input type='text' id="Starting Latitude" name='start_lat' value="{starting_lat if starting_lat else ''}" placeholder="Eg -10">
             <label for="Ending Latitude">Ending Latitude:</label>
@@ -162,11 +163,11 @@ def get_page_html(form_data):
         elif weather_metric == "MinTemp":
             metric_display_name = "Min Temperature (°C)"
         elif weather_metric.startswith("Humid"):
-            metric_display_name = f"Humidity {weather_metric[5:]} hrs (%)"
+            metric_display_name = f"Humidity {weather_metric[5:]} hours (%)"
         elif weather_metric == "Sunshine":
             metric_display_name = "Sunshine (hours)"
         elif weather_metric.startswith("Okta"):
-            metric_display_name = f"Cloud Cover {weather_metric[4:]} hrs"
+            metric_display_name = f"Cloud Cover {weather_metric[4:]} hours"
     
         page_html += f"""
         <br><br>
@@ -194,13 +195,13 @@ def get_page_html(form_data):
         
         <nav class="navbar">
             <ul>
-                <li><a href="LandingPage.html">
-                    <img src="without background.png" height=80>
-                </a></li>
-                <li><a href="LandingPage.html">Home</a></li>
-                <li><a href="Mission.html">Our Mission</a></li>
-                <li><a href="tools.html">Our Tools</a></li>
-                <li><a href="Contact.html">Contact Us</a></li>
+                    <li><a href="http://localhost/">
+                        <img src="without background.png" height=80>
+                    </a></li>
+                    <li><a href="http://localhost/">Home</a></li>
+                    <li><a href="http://localhost/page1b">Our Mission</a></li>
+                    <li><a href="tools.html">Our Tools</a></li>
+                    <li><a href="Contact.html">Contact Us</a></li>
             </ul>
         </nav>
     </body>
