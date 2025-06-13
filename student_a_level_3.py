@@ -86,7 +86,11 @@ def get_page_html(form_data):
         
         <h1>Find Stations with Similar Rate of Change</h1>
         <br>
-        
+        <div class="home-container" style="text-align: right;">
+            <h3 style="display: inline-block;">Click here to go back to the home page:</h3>
+            <a href="/" style="background-color: hsl(207, 100%, 50%); color: white; border: none; padding: 10px 20px; cursor: pointer;" class="home-button">Home</a>
+        </div>
+
         <div style="overflow: hidden;">
             <div style="float: left; width: 50%;">
                 <form method="GET">

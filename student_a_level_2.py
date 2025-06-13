@@ -101,6 +101,10 @@ def get_page_html(form_data):
         
         <h1>View Climate Change by Region</h1>
         <br>
+        <div class="home-container" style="text-align: right;">
+            <h3 style="display: inline-block;">Click here to go back to the home page:</h3>
+            <a href="/" style="background-color: hsl(207, 100%, 50%); color: white; border: none; padding: 10px 20px; cursor: pointer;" class="home-button">Home</a>
+        </div>
         
         <div class="content-wrapper">
             <div class="form-section" style="float: left; width: 45%;">
@@ -117,14 +121,14 @@ def get_page_html(form_data):
                     <input type='text' id="Starting Latitude" name='start_lat' value="{starting_lat if starting_lat else ''}" placeholder="Eg -10">
                     <label for="Ending Latitude">Ending Latitude:</label>
                     <input type='text' id="Ending Latitude" name='ending_lat' value="{ending_lat if ending_lat else ''}" placeholder="Eg -45">
-                    
+                    <br><br><br><br>
                     <h2>Select a weather metric to analyze</h2>
                     <select name="metric" id="metric" required>
                         <option value="">Choose a metric...</option>
                         {"".join([f'<option value="{metric[0]}" {"selected" if weather_metric == metric[0] else ""}>{metric[1]}</option>' for metric in weather_metrics])}
                     </select>    
                     
-                    <br><br>
+                    <br><br><br><br><br><br>
                     <input type="Submit" value="Analyze" style="background-color: hsl(207, 100%, 50%); color: white; border: none; padding: 10px 20px; cursor: pointer;">
                     <input type="reset" style="background-color: hsl(207, 100%, 50%); color: white; border: none; padding: 10px 20px; cursor: pointer;">
                 </form>
