@@ -146,7 +146,7 @@ def get_page_html(form_data):
             <select id="AustralianState" name ="state">
                 {"".join([f'<option value="{state[0]}" {"selected" if state[0] == selected_state else ""}>{state[0]}</option>' for state in states_results])}
             </select>
-            <input type="Submit" value="Check State">
+            <input type="Submit" value="Check State" style="background-color: hsl(207, 100%, 50%); color: white; border: none; padding: 10px 20px; cursor: pointer;">
         </form>    
 
         <div class="container">

@@ -18,7 +18,7 @@ def get_page_html(form_data):
     weather_metrics = [
         ("Precipitation", "Precipitation"),
         ("Evaporation", "Evaporation in a day"),
-        ("MaxTemp", "Maximum in a day"),
+        ("MaxTemp", "Maximum temperature in a day"),
         ("MinTemp", "Minimum temperature in a day"),
         ("Humid00", "Relative humidity at 12 AM"),
         ("Humid03", "Relative humidity at 3 AM"),
@@ -102,32 +102,36 @@ def get_page_html(form_data):
         <h1>View Climate Change by Region</h1>
         <br>
         
-        <form method="GET">
-            <h2>Select your desired state:</h2>
-            <select id="AustralianState" name="state">
-                {"".join([f'<option value="{state[0]}" {"selected" if state[0] == selected_state else ""}>{state[0]}</option>' for state in states_results])}
-            </select>
+        <div class="content-wrapper">
+            <div class="form-section" style="float: left; width: 45%;">
+                <form method="GET">
+                    <h2>Select your desired state:</h2>
+                    <select id="AustralianState" name="state">
+                        {"".join([f'<option value="{state[0]}" {"selected" if state[0] == selected_state else ""}>{state[0]}</option>' for state in states_results])}
+                    </select>
 
-            <h2>Enter your starting and ending latitude</h2>
-            <h5>Please note that Australia is within a negative latitude. Therefore starting latitude must be 0 and below</h5>
-            <h5>Addiotionally also note that Starting Latitude must be a higher value than Ending Latitude"</h5>
-            <label for="Starting Latitude">Starting Latitude:</label>
-            <input type='text' id="Starting Latitude" name='start_lat' value="{starting_lat if starting_lat else ''}" placeholder="Eg -10">
-            <label for="Ending Latitude">Ending Latitude:</label>
-            <input type='text' id="Ending Latitude" name='ending_lat' value="{ending_lat if ending_lat else ''}" placeholder="Eg -45">
+                    <h2>Enter your starting and ending latitude</h2>
+                    <h5>Please note that Australia is within a negative latitude. Therefore starting latitude must be 0 and below</h5>
+                    <h5>Additionally also note that Starting Latitude must be a higher value than Ending Latitude</h5>
+                    <label for="Starting Latitude">Starting Latitude:</label>
+                    <input type='text' id="Starting Latitude" name='start_lat' value="{starting_lat if starting_lat else ''}" placeholder="Eg -10">
+                    <label for="Ending Latitude">Ending Latitude:</label>
+                    <input type='text' id="Ending Latitude" name='ending_lat' value="{ending_lat if ending_lat else ''}" placeholder="Eg -45">
+                    
+                    <h2>Select a weather metric to analyze</h2>
+                    <select name="metric" id="metric" required>
+                        <option value="">Choose a metric...</option>
+                        {"".join([f'<option value="{metric[0]}" {"selected" if weather_metric == metric[0] else ""}>{metric[1]}</option>' for metric in weather_metrics])}
+                    </select>    
+                    
+                    <br><br>
+                    <input type="Submit" value="Analyze" style="background-color: hsl(207, 100%, 50%); color: white; border: none; padding: 10px 20px; cursor: pointer;">
+                    <input type="reset" style="background-color: hsl(207, 100%, 50%); color: white; border: none; padding: 10px 20px; cursor: pointer;">
+                </form>
+            </div>
             
-            <h2>Select a weather metric to analyze</h2>
-            <select name="metric" id="metric" required>
-                <option value="">Choose a metric...</option>
-                {"".join([f'<option value="{metric[0]}" {"selected" if weather_metric == metric[0] else ""}>{metric[1]}</option>' for metric in weather_metrics])}
-            </select>    
-            
-            <br><br>
-            <input type="Submit" value="Analyze">
-            <input type="Reset">
-        </form>
-        
-        <article>"""
+            <div class="table-section" style="float: right; width: 45%;">
+                <article>"""
 
     # CREATION OF THE FIRST TABLE
     if state_latitude_results:
@@ -135,8 +139,8 @@ def get_page_html(form_data):
         <br>
         <h3>Weather Stations in Selected Area:</h3>
         <table border='1'>
-            <tr>
-                <th>Site ID</th>
+            <tr align="center" style="background-color: hsl(207, 100%, 50%)">
+                <th>Station ID</th>
                 <th>Station Name</th>
                 <th>Latitude</th>
                 <th>Longitude</th>
@@ -163,7 +167,7 @@ def get_page_html(form_data):
         elif weather_metric == "MinTemp":
             metric_display_name = "Min Temperature (°C)"
         elif weather_metric.startswith("Humid"):
-            metric_display_name = f"Humidity {weather_metric[5:]} hours (%)"
+            metric_display_name = f"Humidity {weather_metric[5:]} (%)"
         elif weather_metric == "Sunshine":
             metric_display_name = "Sunshine (hours)"
         elif weather_metric.startswith("Okta"):
@@ -173,7 +177,7 @@ def get_page_html(form_data):
         <br><br>
         <h3>All regions within {selected_state} and the analyzed weather metric</h3>
         <table border='1'>
-            <tr>
+            <tr align="center" style="background-color: hsl(207, 100%, 50%)">
                 <th>Region</th>
                 <th>Number Weather Stations</th>
                 <th>Average {metric_display_name}</th>
@@ -190,7 +194,10 @@ def get_page_html(form_data):
         page_html += "</table>"
 
     page_html += """    
-        </article>
+                </article>
+            </div>
+        </div>
+        <div style="clear: both;"></div>
         <br><br><br><br>
         
         <nav class="navbar">

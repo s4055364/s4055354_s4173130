@@ -68,3 +68,15 @@ h1{
 .dropdown{
     display: inline-block;
 }
+
+input[type="submit"] {
+    background-color: hsl(207, 100%, 50%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: hsl(207, 100%, 40%);
+}
