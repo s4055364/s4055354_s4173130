@@ -104,8 +104,8 @@ def get_page_html(form_data):
 
                     </a>
                     </li>
-                    <li><a href ="LandingPage.html">Home</a></li>
-                    <li><a href ="Mission.html">Our Mission</a></li>
+                    <li><a href ="student_a_level_1.py">Home</a></li>
+                    <li><a href ="student_b_level_1">Our Mission</a></li>
                     <li><a href ="tools.html">Our Tools</a></li>
                     <li><a href ="Contact.html">Contact Us</a></li>
                 </ul>
