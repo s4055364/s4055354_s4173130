@@ -76,16 +76,17 @@ def get_page_html(form_data):
 </html>
 
     """
-    sql_query = "select * from movie;"
+    """
+    sql_query = "select * from climate;"
     page_html+= f"<h2>Result from \"{sql_query}\"</h2>"
     
     #Run the query in sql_query and get the results
-    results = pyhtml.get_results_from_query("database/movies.db",sql_query)
+    results = pyhtml.get_results_from_query("database/climate.db",sql_query)
     
     #Adding results to the web page without any beautification. Try turning it into a nice table!
     for row in results:
         page_html+="<p>"+str(row)+"</p>\n"
-    page_html+="""
+    page_html+=
         <p><a href="/">Go to Page 1A</a></p>
         <p><a href="/page2a">Go to Page 2A</a></p>
         <p><a href="/page3a">Go to Page 3A</a></p>
@@ -95,4 +96,5 @@ def get_page_html(form_data):
     </body>
     </html>
     """
+    """"""
     return page_html

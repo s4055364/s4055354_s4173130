@@ -138,7 +138,7 @@ def get_page_html(form_data):
     
     ################################ Movie star drop down list is generated below ######################################
           
-
+    """
     #Put the query together.
     query = "select * from star;"
     
@@ -174,15 +174,15 @@ def get_page_html(form_data):
 
     ################################ Movies drop down list is generated below ##########################################
     
-    page_html+="""<label for="var_movie">Movie</label>
-    <select name="var_movie" """
+    page_html+=<label for="var_movie">Movie</label>
+    <select name="var_movie"
 
     #We create this drop down list only if a movie star was chosen
     if var_star!=None:
         #Query for getting the list of movie IDs and their titles by star
-        query ="""SELECT movie.mvnumb, movie.mvtitle 
+        query =SELECT movie.mvnumb, movie.mvtitle 
         FROM movie 
-        JOIN movstar ON movie.mvnumb = movstar.mvnumb """
+        JOIN movstar ON movie.mvnumb = movstar.mvnumb
         query+=f"WHERE movstar.starnumb = {var_star[0]};"
 
         #Run query and get results
@@ -199,7 +199,7 @@ def get_page_html(form_data):
         page_html+='<option>Choose a star</option>'
     page_html+="</select><br><br>"
 
-    page_html+="""
+    page_html+=
     <input type="submit" value="Show starred movies">
     </form>
         <p><a href="/">Go to Page 1A</a></p>
@@ -210,5 +210,6 @@ def get_page_html(form_data):
         <p><a href="/page3b">Go to Page 3B</a></p>
     </body>
     </html>
+    
     """
     return page_html
