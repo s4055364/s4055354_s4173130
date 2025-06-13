@@ -3,46 +3,52 @@ import sqlite3
 
 def get_page_html(form_data):
     
-    # Get form values
-    selected_state = form_data.get("state")[0] if form_data.get("state") else False
-    reference_station = form_data.get("reference_station")[0] if form_data.get("reference_station") else False
-    weather_metric = form_data.get("metric")[0] if form_data.get("metric") else False
-    num_stations = form_data.get("num_stations")[0] if form_data.get("num_stations") else False
-    start_date1 = form_data.get("start_date1")[0] if form_data.get("start_date1") else False
-    end_date1 = form_data.get("end_date1")[0] if form_data.get("end_date1") else False
-    start_date2 = form_data.get("start_date2")[0] if form_data.get("start_date2") else False
-    end_date2 = form_data.get("end_date2")[0] if form_data.get("end_date2") else False
+    selected_state = False
+    reference_station = False
+    weather_metric = False
+    num_stations = False
+    start_date1 = False
+    end_date1 = False
+    start_date2 = False
+    end_date2 = False
+    
+    if form_data:
+        selected_state = form_data.get("state")[0] if form_data.get("state") else False
+        reference_station = form_data.get("reference_station")[0] if form_data.get("reference_station") else False
+        weather_metric = form_data.get("metric")[0] if form_data.get("metric") else False
+        num_stations = form_data.get("num_stations")[0] if form_data.get("num_stations") else False
+        start_date1 = form_data.get("start_date1")[0] if form_data.get("start_date1") else False
+        end_date1 = form_data.get("end_date1")[0] if form_data.get("end_date1") else False
+        start_date2 = form_data.get("start_date2")[0] if form_data.get("start_date2") else False
+        end_date2 = form_data.get("end_date2")[0] if form_data.get("end_date2") else False
 
-    # Define weather metrics
     weather_metrics = [
-        ("Precipitation", "Precipitation in the 24 hours before 9am (local time). In mm."),
-        ("Evaporation", "Evaporation in 24 hours before 9am (local time). In mm."),
-        ("MaxTemp", "Maximum temperature in 24 hours after 9am (local time). In Degrees C."),
-        ("MinTemp", "Minimum temperature in 24 hours before 9am (local time). In Degrees C."),
-        ("Humid00", "Relative humidity at 00 hours Local Time. In percentage %."),
-        ("Humid03", "Relative humidity at 03 hours Local Time. In percentage %."),
-        ("Humid06", "Relative humidity at 06 hours Local Time. In percentage %."),
-        ("Humid09", "Relative humidity at 09 hours Local Time. In percentage %."),
-        ("Humid12", "Relative humidity at 12 hours Local Time. In percentage %."),
-        ("Humid15", "Relative humidity at 15 hours Local Time. In percentage %."),
-        ("Humid18", "Relative humidity at 18 hours Local Time. In percentage %."),
-        ("Humid21", "Relative humidity at 21 hours Local Time. In percentage %."),
-        ("Sunshine", "Number of hours of bright sunshine in the 24 hours midnight to midnight (local time)."),
-        ("Okta00", "Total cloud amount at 00 hours Local Time"),
-        ("Okta03", "Total cloud amount at 03 hours Local Time"),
-        ("Okta06", "Total cloud amount at 06 hours Local Time"),
-        ("Okta09", "Total cloud amount at 09 hours Local Time"),
-        ("Okta12", "Total cloud amount at 12 hours Local Time"),
-        ("Okta15", "Total cloud amount at 15 hours Local Time"),
-        ("Okta18", "Total cloud amount at 18 hours Local Time"),
-        ("Okta21", "Total cloud amount at 21 hours Local Time"),
+        ("Precipitation", "Precipitation"),
+        ("Evaporation", "Evaporation in a day"),
+        ("MaxTemp", "Maximum in a day"),
+        ("MinTemp", "Minimum temperature in a day"),
+        ("Humid00", "Relative humidity at 12 AM"),
+        ("Humid03", "Relative humidity at 3 AM"),
+        ("Humid06", "Relative humidity at 6 AM"),
+        ("Humid09", "Relative humidity at 9 AM"),
+        ("Humid12", "Relative humidity at 12 PM"),
+        ("Humid15", "Relative humidity at 3 PM"),
+        ("Humid18", "Relative humidity at 6 PM"),
+        ("Humid21", "Relative humidity at 9 PM"),
+        ("Sunshine", "Hours of sunshine in a day"),
+        ("Okta00", "Cloudiness at 12 AM"),
+        ("Okta03", "Cloudiness at 3 AM"),
+        ("Okta06", "Cloudiness at 6 AM"),
+        ("Okta09", "Cloudiness at 9 AM"),
+        ("Okta12", "Cloudiness at 12 PM"),
+        ("Okta15", "Cloudiness at 3 PM"),
+        ("Okta18", "Cloudiness at 6 PM"),
+        ("Okta21", "Cloudiness at 9 PM"),
     ]
     
-    # Get states for dropdown
     states_query = "SELECT name FROM state ORDER by name"
     states_results = pyhtml.get_results_from_query("database/climate.db", states_query)
-    
-    # Get stations for selected state
+
     stations_results = []
     if selected_state:
         stations_query = f"""
@@ -54,24 +60,9 @@ def get_page_html(form_data):
         """
         stations_results = pyhtml.get_results_from_query("database/climate.db", stations_query)
     
-    # Results table data
     similar_stations_results = []
     
-    # If all form fields are filled, calculate similar stations
-    if (selected_state and reference_station and weather_metric and num_stations and 
-        start_date1 and end_date1 and start_date2 and end_date2):
-        
-        # Query to calculate rate of change for all stations
-        # For D/MM/YY format, we need to handle 2-digit years
-        
-            
-        
-        similar_stations_results = pyhtml.get_results_from_query("database/climate.db", rate_change_query)
-        
-        # Debug: Check if we got any results
-        print(f"Similar stations results: {similar_stations_results}")
 
-    # Build the HTML page
     page_html = f"""<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -144,10 +135,10 @@ def get_page_html(form_data):
         
         <article>"""
 
-    # Display results table if we have data
+    
     if similar_stations_results:
-        # Get metric display name
-        metric_display_name = "Temp"  # Default
+    
+        metric_display_name = "Temp"  
         if weather_metric == "MaxTemp":
             metric_display_name = "Temp"
         elif weather_metric == "MinTemp":
@@ -161,7 +152,7 @@ def get_page_html(form_data):
         elif weather_metric.startswith("Humid"):
             metric_display_name = "Humidity"
         
-        # Get reference station name
+        
         ref_station_name = reference_station
         for station in stations_results:
             if str(station[0]) == reference_station:

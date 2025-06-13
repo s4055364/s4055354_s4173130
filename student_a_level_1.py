@@ -3,7 +3,7 @@ import sqlite3
 
 
 def get_page_html(form_data):
-    print("About to return page home page...")
+    
 
     states_query = "SELECT name FROM state ORDER by name"
     states_results = pyhtml.get_results_from_query("database/climate.db", states_query)
