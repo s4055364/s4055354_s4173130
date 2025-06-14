@@ -21,17 +21,8 @@ def get_page_html(form_data):
         <li><a href="LandingPage.html">Home</a></li>
         <li><a href="Mission.html">Our Mission</a></li>
         <li class="dropdown">
-          <a href="#">States ▾</a>
-          <ul class="dropdown-content">
-            <li><a href="nsw.html">NSW</a></li>
-            <li><a href="vic.html">Victoria</a></li>
-            <li><a href="qld.html">Queensland</a></li>
-            <li><a href="wa.html">Western Australia</a></li>
-            <li><a href="sa.html">South Australia</a></li>
-            <li><a href="tas.html">Tasmania</a></li>
-            <li><a href="nt.html">Northern Territory</a></li>
-            <li><a href="act.html">ACT</a></li>
-          </ul>
+          <a href="#">Our Tools</a>
+          
         </li>
         <li><a href="Contact.html">Contact Us</a></li>
       </ul>
