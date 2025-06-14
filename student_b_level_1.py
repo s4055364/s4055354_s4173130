@@ -50,10 +50,12 @@ def get_page_html(form_data):
 
     <h2>User Personas:</h2>
     <div class="user-personas">
+        {{personas_html}}
     </div>
 
     <h2>Team Member Section:</h2>
     <div class="team-members">
+        {{students_html}}
     </div>
   </div>
 
@@ -68,12 +70,13 @@ def get_page_html(form_data):
 </body>
 </html>
     """
-        # Load personas information from the database
+    # Load personas from the database
     persona_query = "SELECT name, occupation, image_path FROM personas"
     personas = pyhtml.get_results_from_query("database/climate.db", persona_query)
 
+    personas_html = ""
     for name, occupation, image_path in personas:
-        page_html += f"""
+        personas_html += f"""
         <div class="persona-box">
             <img src="{image_path}" width="100"><br>
             <strong>{name}</strong><br>
@@ -81,22 +84,21 @@ def get_page_html(form_data):
         </div>
         """
 
-    page_html += "</div>" 
-
-    # Load student information from the database
+    # Load students from the database
     student_query = "SELECT name, student_id FROM students"
     students = pyhtml.get_results_from_query("database/climate.db", student_query)
 
-    page_html += "<div class='team-members'>"
-
+    students_html = ""
     for name, student_id in students:
-        page_html += f"""
+        students_html += f"""
         <div class="team-box">
             <strong>{name}</strong><br>
             ({student_id})
         </div>
         """
 
-    page_html += "</div>" 
-    
+    # Inject the dynamic HTML into placeholders
+    page_html = page_html.replace("{{personas_html}}", personas_html)
+    page_html = page_html.replace("{{students_html}}", students_html)
+
     return page_html
