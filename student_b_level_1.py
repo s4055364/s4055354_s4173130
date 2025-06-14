@@ -51,7 +51,7 @@ def get_page_html(form_data):
     <div class="user-personas">
       <div class="persona-box">*loaded from database</div>
       <div class="persona-box">*loaded from database</div>
-      <div class="persona-box">*loaded from database</div>
+
     </div>
 
     <h2>Team Member Section:</h2>
