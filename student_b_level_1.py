@@ -1,3 +1,4 @@
+import pyhtml
 def get_page_html(form_data):
     print("About to return page home page...")
     page_html="""<!DOCTYPE html>
@@ -49,22 +50,10 @@ def get_page_html(form_data):
 
     <h2>User Personas:</h2>
     <div class="user-personas">
-      <div class="persona-box">*loaded from database</div>
-      <div class="persona-box">*loaded from database</div>
-
     </div>
 
     <h2>Team Member Section:</h2>
     <div class="team-members">
-      <div class="team-box">
-        <strong>James Lee Bunyamin</strong><br>
-        (s4173130)<br>
-        </div>
-      <div class="team-box">
-        <strong>Angelo Giannetas</strong><br>
-        (s4055364)<br>
-      
-      </div>
     </div>
   </div>
 
@@ -79,4 +68,35 @@ def get_page_html(form_data):
 </body>
 </html>
     """
+        # Load personas information from the database
+    persona_query = "SELECT name, occupation, image_path FROM personas"
+    personas = pyhtml.get_results_from_query("database/climate.db", persona_query)
+
+    for name, occupation, image_path in personas:
+        page_html += f"""
+        <div class="persona-box">
+            <img src="{image_path}" width="100"><br>
+            <strong>{name}</strong><br>
+            <em>{occupation}</em>
+        </div>
+        """
+
+    page_html += "</div>" 
+
+    # Load student information from the database
+    student_query = "SELECT name, student_id FROM students"
+    students = pyhtml.get_results_from_query("database/climate.db", student_query)
+
+    page_html += "<div class='team-members'>"
+
+    for name, student_id in students:
+        page_html += f"""
+        <div class="team-box">
+            <strong>{name}</strong><br>
+            ({student_id})
+        </div>
+        """
+
+    page_html += "</div>" 
+    
     return page_html
