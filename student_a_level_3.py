@@ -96,7 +96,7 @@ def get_page_html(form_data):
         
     <body>
         <nav class="navbar">
-            <ul>
+                <ul>
                     <li><a href="http://localhost/">
                         <img src="without background.png" height=80>
                     </a></li>
@@ -104,7 +104,7 @@ def get_page_html(form_data):
                     <li><a href="http://localhost/page1b">Our Mission</a></li>
                     <li><a href="tools.html">Our Tools</a></li>
                     <li><a href="Contact.html">Contact Us</a></li>
-            </ul>
+                </ul>
         </nav>
         
         <h1>Find Stations with Similar Rate of Change</h1>
@@ -203,7 +203,7 @@ def get_page_html(form_data):
         <br><br><br><br>
         
         <nav class="navbar">
-            <ul>
+                <ul>
                     <li><a href="http://localhost/">
                         <img src="without background.png" height=80>
                     </a></li>
@@ -211,7 +211,7 @@ def get_page_html(form_data):
                     <li><a href="http://localhost/page1b">Our Mission</a></li>
                     <li><a href="tools.html">Our Tools</a></li>
                     <li><a href="Contact.html">Contact Us</a></li>
-            </ul>
+                </ul>
         </nav>
     </body>
     </html>

@@ -15,6 +15,7 @@ def get_page_html(form_data):
     state_latitude_results = []
     all_regions_results = []  
 
+    #EDIT VERY ON 14/6/2025, I HAVE REALIZED THAT WE ARE MEANT TO HAVE A TABLE IN OUR SQL DATABASE THAT HAS ALL OF THESE WEATHER METRICS AND THEIR DESCRIPTIONS AND HAVE SINCE ADDED THEM,. I'M NOT REDOING ALL OF MY CODE TO ACCOMODATE FOR THIS.
     weather_metrics = [
         ("Precipitation", "Precipitation"),
         ("Evaporation", "Evaporation in a day"),
@@ -113,16 +114,16 @@ def get_page_html(form_data):
         
     <body>
         <nav class="navbar">
-            <ul>
-                <li><a href="http://localhost/">
-                    <img src="without background.png" height=80>
-                </a></li>
-                <li><a href="http://localhost/">Home</a></li>
-                <li><a href="http://localhost/page1b">Our Mission</a></li>
-                <li><a href="tools.html">Our Tools</a></li>
-                <li><a href="Contact.html">Contact Us</a></li>
-            </ul>
-        </nav>
+                <ul>
+                    <li><a href="http://localhost/">
+                        <img src="without background.png" height=80>
+                    </a></li>
+                    <li><a href="http://localhost/">Home</a></li>
+                    <li><a href="http://localhost/page1b">Our Mission</a></li>
+                    <li><a href="tools.html">Our Tools</a></li>
+                    <li><a href="Contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
         
         <h1>View Climate Change by Region</h1>
         <br>
@@ -239,15 +240,15 @@ def get_page_html(form_data):
         <br><br><br><br>
         
         <nav class="navbar">
-            <ul>
-                <li><a href="http://localhost/">
-                    <img src="without background.png" height=80>
-                </a></li>
-                <li><a href="http://localhost/">Home</a></li>
-                <li><a href="http://localhost/page1b">Our Mission</a></li>
-                <li><a href="tools.html">Our Tools</a></li>
-                <li><a href="Contact.html">Contact Us</a></li>
-            </ul>
+                <ul>
+                    <li><a href="http://localhost/">
+                        <img src="without background.png" height=80>
+                    </a></li>
+                    <li><a href="http://localhost/">Home</a></li>
+                    <li><a href="http://localhost/page1b">Our Mission</a></li>
+                    <li><a href="tools.html">Our Tools</a></li>
+                    <li><a href="Contact.html">Contact Us</a></li>
+                </ul>
         </nav>
     </body>
     </html>
