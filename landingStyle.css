@@ -110,6 +110,7 @@ h2{
 .container a{
     text-decoration: none;
     color: white;
+    
 }
 .box{
     width: 200px;
@@ -122,44 +123,52 @@ h2{
 
 #box1{
     background-color: hsl(207, 100%, 50%);
+    font-size: 1.1em;
 }
 #box1:hover{
     background-color: hsl(207, 100%, 40%);
+    font-size: 1.1em;
 }
 #box2{
     background-color: hsl(207, 100%, 50%);
+    font-size: 1.1em;
 }
 #box2:hover{
     background-color: hsl(207, 100%, 40%);
+    font-size: 1.1em;
 }
 #box3:hover{
     background-color: hsl(207, 100%, 40%);
+    font-size: 1.1em;
 }
 #box3{
     background-color: hsl(207, 100%, 50%);
+    font-size: 1.1em;
 }
 #box4:hover{
     background-color: hsl(207, 100%, 40%);
+    font-size: 1.1em;
 }
 #box4{
     background-color: hsl(207, 100%, 50%);
+    font-size: 1.1em;
 }
 
 #box9{
     background-color: hsl(207, 100%, 50%);
     color: white;
-    font-size: 1.1em;
+    font-size: .8em;
 }
 #box10{
     background-color: hsl(207, 100%, 50%);
     color: white;
-    font-size: 1.1em;
+    font-size: .8em;
 }#box11{
     background-color: hsl(207, 100%, 50%);
     color: white;
-    font-size: 1.1em;
+    font-size: .8em;
 }#box12{
     background-color: hsl(207, 100%, 50%);
     color: white;
-    font-size: 1.1em;
+    font-size: .8em;
 }
