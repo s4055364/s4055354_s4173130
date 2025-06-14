@@ -121,6 +121,7 @@ def get_page_html(form_data):
         <br>
         <h1>Our Tools</h1>
         <h2>Our Data uses data from 1970-2020</h2>
+        <h3>You can click on the boxes!</h3>
         <div class="container">
             <a href="http://localhost/page2a">
                 <div class="box" id="box1">View Climate Data by Region</div>
