@@ -5,17 +5,122 @@ def get_page_html(form_data):
     #Note that the drop down list ('select' HTML element) has been given the name "var_star"
     #We will use this same name in our code further below to obtain what the user selected.
     page_html="""<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <title>Page 3B - Forms, databases and advanced queries</title>
-    </head>
-    <body>
-        <h1>Welcome to Page 3B!</h1>
-        <p>List the movies based on the star</p>
-        <form action="/page3b" method="GET">
-        
-          <label for="var_star">Movie Star</label>
-          <select name="var_star" multiple>"""
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Climate Data Comparison</title>
+  <link rel="stylesheet" href="page3B.css">
+</head>
+<body>
+  <header>
+  <!-- TOP NAVIGATION -->
+    <nav class="navbar">
+    <ul>
+      <li><a href="LandingPage.html"><img src="without background.png" height="60" alt="Logo"></a></li>
+      <li><a href="LandingPage.html">Home</a></li>
+      <li><a href="Mission.html">Our Mission</a></li>
+      <li class="dropdown">
+        <a href="#">Our Tools</a>
+
+    </li>
+
+      <li><a href="Contact.html">Contact Us</a></li>
+    </ul>
+    </nav>
+
+
+</header>
+
+  <div class="container">
+    <h1>Climate Data</h1>
+
+    <div class="section">
+      <label>Select time period:</label>
+      <div class="inline-inputs">
+        <input type="text" placeholder="From (period)">
+        <input type="text" placeholder="Till (period)">
+      </div>
+      <small><i>+add another time period</i></small>
+    </div>
+
+    <div class="section">
+      <label>Choose a reference climate metric:</label>
+      <select>
+        <option value="" disabled selected style="color: grey;">climate</option>
+      </select>
+    </div>
+
+    <div class="section">
+      <label>Choose Number of climate metrics to find:</label>
+      <input type="number" min="1">
+    </div>
+
+    <div class="data-table">
+      <label><strong>Data:</strong></label>
+      <table>
+        <thead>
+          <tr>
+            <th>Metric Name</th>
+            <th>Total (2005–2009)</th>
+            <th>Total (2010–2015)</th>
+            <th>% Change</th>
+            <th>Difference from Precipitation (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Precipitation</td>
+            <td>4250 mm</td>
+            <td>4370 mm</td>
+            <td>+2.80%</td>
+            <td>0.0% (selected)</td>
+          </tr>
+          <tr>
+            <td>Evaporation</td>
+            <td>7100 mm</td>
+            <td>7125 mm</td>
+            <td>+0.35%</td>
+            <td>-2.45%</td>
+          </tr>
+          <tr>
+            <td>Average Temp</td>
+            <td>22.5 °C</td>
+            <td>22.9 °C</td>
+            <td>+1.77%</td>
+            <td>-1.03%</td>
+          </tr>
+          <tr>
+            <td>Sunshine</td>
+            <td>19,300 hrs</td>
+            <td>19,415 hrs</td>
+            <td>+0.59%</td>
+            <td>-2.21%</td>
+          </tr>
+          <tr>
+            <td>Cloud Cover</td>
+            <td>3250 oktas</td>
+            <td>3200 oktas</td>
+            <td>-1.50%</td>
+            <td>-1.30%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>
+  <nav class="navbar">
+    <ul>
+      <li><a href="LandingPage.html">Home</a></li>
+      <li><a href="Mission.html">Our Mission</a></li>
+      <li><a href="Contact.html">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  </footer>
+</body>
+</html>"""
     #Before you read further, play around with the web-page and note how selecting a star name from the first
     #drop down list populates the second drop down list with the movies in which they have featured.
     
@@ -24,7 +129,7 @@ def get_page_html(form_data):
     
     ################################ Movie star drop down list is generated below ######################################
           
-
+    """
     #Put the query together.
     query = "select * from star;"
     
@@ -60,15 +165,15 @@ def get_page_html(form_data):
 
     ################################ Movies drop down list is generated below ##########################################
     
-    page_html+="""<label for="var_movie">Movie</label>
-    <select name="var_movie" """
+    page_html+=<label for="var_movie">Movie</label>
+    <select name="var_movie"
 
     #We create this drop down list only if a movie star was chosen
     if var_star!=None:
         #Query for getting the list of movie IDs and their titles by star
-        query ="""SELECT movie.mvnumb, movie.mvtitle 
+        query =SELECT movie.mvnumb, movie.mvtitle 
         FROM movie 
-        JOIN movstar ON movie.mvnumb = movstar.mvnumb """
+        JOIN movstar ON movie.mvnumb = movstar.mvnumb
         query+=f"WHERE movstar.starnumb = {var_star[0]};"
 
         #Run query and get results
@@ -85,7 +190,7 @@ def get_page_html(form_data):
         page_html+='<option>Choose a star</option>'
     page_html+="</select><br><br>"
 
-    page_html+="""
+    page_html+=
     <input type="submit" value="Show starred movies">
     </form>
         <p><a href="/">Go to Page 1A</a></p>
@@ -96,5 +201,6 @@ def get_page_html(form_data):
         <p><a href="/page3b">Go to Page 3B</a></p>
     </body>
     </html>
+    
     """
     return page_html
