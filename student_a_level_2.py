@@ -77,31 +77,50 @@ def get_page_html(form_data):
             ORDER BY r.name
         """
         all_regions_results = pyhtml.get_results_from_query("database/climate.db", all_regions_query)
-
+        
+        #WHY IS THE CSS IN MY STYLE PAGE NOT WORKING BUT WORKS WHEN ADDED DIRECTLY TO THE HTML PAGE?????
     page_html = f"""<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8"> 
         <title>Level2A</title>
-        <link rel="stylesheet" href="level2A.css">
+        <link rel="stylesheet" href="level2A.css" >
+        
+        <style>
+            @media print {{
+                body * {{
+                    visibility: hidden;
+                }}
+                #printable-content, #printable-content * {{
+                    visibility: visible;
+                }}
+                #printable-content {{
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }}
+                .no-print {{
+                    display: none !important;
+                }}
+            }}
+        </style>
         <script>
             function printTable() {{
                 window.print();
-                }}
+            }}
         </script>        
-        
     </head>    
         
     <body>
         <nav class="navbar">
             <ul>
-                    <li><a href="http://localhost/">
-                        <img src="without background.png" height=80>
-                    </a></li>
-                    <li><a href="http://localhost/">Home</a></li>
-                    <li><a href="http://localhost/page1b">Our Mission</a></li>
-                    <li><a href="tools.html">Our Tools</a></li>
-                    <li><a href="Contact.html">Contact Us</a></li>
+                <li><a href="http://localhost/">
+                    <img src="without background.png" height=80>
+                </a></li>
+                <li><a href="http://localhost/">Home</a></li>
+                <li><a href="http://localhost/page1b">Our Mission</a></li>
+                <li><a href="tools.html">Our Tools</a></li>
+                <li><a href="Contact.html">Contact Us</a></li>
             </ul>
         </nav>
         
@@ -140,15 +159,18 @@ def get_page_html(form_data):
                 </form>
             </div>
             
-            <div id="printable-table" class="table-section" style="float: left; width: 60%;">
-                <article>
-                """
+            <div class="table-section" style="float: right; width: 60%;">
+                <article>"""
+
+    
+    if state_latitude_results or all_regions_results:
+        page_html += """
+                <button class="no-print" onclick="printTable()" style="background-color: hsl(207, 100%, 50%); color: white; border: none; padding: 10px 20px; cursor: pointer; margin-bottom: 20px;">Print Tables</button>
+                <div id="printable-content">"""
 
     # CREATION OF THE FIRST TABLE
     if state_latitude_results:
         page_html += """
-        <br>
-        <button class="print-button no-print" onclick="printTable()" style="background-color: hsl(207, 100%, 50%); color: white; border: none; padding: 10px 20px; cursor: pointer;">Print Table</button>
         <h3>Weather Stations in Selected Area:</h3>
         <table border='1'>
             <tr align="center" style="background-color: hsl(207, 100%, 50%)">
@@ -205,6 +227,10 @@ def get_page_html(form_data):
             """
         page_html += "</table>"
 
+    
+    if state_latitude_results or all_regions_results:
+        page_html += "</div>"
+
     page_html += """    
                 </article>
             </div>
@@ -214,13 +240,13 @@ def get_page_html(form_data):
         
         <nav class="navbar">
             <ul>
-                    <li><a href="http://localhost/">
-                        <img src="without background.png" height=80>
-                    </a></li>
-                    <li><a href="http://localhost/">Home</a></li>
-                    <li><a href="http://localhost/page1b">Our Mission</a></li>
-                    <li><a href="tools.html">Our Tools</a></li>
-                    <li><a href="Contact.html">Contact Us</a></li>
+                <li><a href="http://localhost/">
+                    <img src="without background.png" height=80>
+                </a></li>
+                <li><a href="http://localhost/">Home</a></li>
+                <li><a href="http://localhost/page1b">Our Mission</a></li>
+                <li><a href="tools.html">Our Tools</a></li>
+                <li><a href="Contact.html">Contact Us</a></li>
             </ul>
         </nav>
     </body>
