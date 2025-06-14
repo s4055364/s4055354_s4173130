@@ -69,6 +69,29 @@ def get_page_html(form_data):
         <meta charset="UTF-8"> 
         <title>Level 3 - Similar Rate of Change Analysis</title>
         <link rel="stylesheet" href="level3A.css">
+        <style>
+            @media print {{
+                body * {{
+                    visibility: hidden;
+                }}
+                #printable-content, #printable-content * {{
+                    visibility: visible;
+                }}
+                #printable-content {{
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }}
+                .no-print {{
+                    display: none !important;
+                }}
+            }}
+        </style>
+        <script>
+            function printTable() {{
+                window.print();
+            }}
+        </script> 
     </head>    
         
     <body>
@@ -140,10 +163,11 @@ def get_page_html(form_data):
                 </form>
             </div>
             
-            <div style="float: right; width: 45%;">
+            <div style="float: left; width: 45%;">
                 <article>
+                    <button class="no-print" onclick="printTable()" style="background-color: hsl(207, 100%, 50%); color: white; border: none; padding: 10px 20px; cursor: pointer; margin-bottom: 20px;">Print Tables</button>
                     <table border="1">
-                        <tr>
+                        <tr >
                             <th>Weather Station</th>
                             <th>Average Temp<br>(2005-2009)</th>
                             <th>Average Temp<br>(2010-2015)</th>
