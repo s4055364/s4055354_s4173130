@@ -3,7 +3,7 @@ import sqlite3
 
 
 def get_page_html(form_data):
-    print("About to return page home page...")
+    
 
     states_query = "SELECT name FROM state ORDER by name"
     states_results = pyhtml.get_results_from_query("database/climate.db", states_query)
@@ -14,28 +14,26 @@ def get_page_html(form_data):
 
     if selected_state:
         # THIS IS FOR COUNTING STATIONS IN A SPECIFIC STATE
-        stations_count_query = f"SELECT COUNT(ws.site_id) as station_count FROM weather_station ws INNER JOIN state s ON ws.state_id = s.id WHERE s.name = '{selected_state}'"
+        stations_count_query = f"SELECT COUNT(*) FROM weather_station ws JOIN state s ON ws.state_id = s.id WHERE s.name = '{selected_state}'"
         stations_count_result = pyhtml.get_results_from_query("database/climate.db", stations_count_query)
         station_count = stations_count_result[0][0] if stations_count_result else 0
         
         # THIS IS TO FIND THE HIGHEST TEMPERATURE RECORDED IN THE STATE
         
-        max_temp_query = f"""SELECT wd.MaxTemp as highest_temp, ws.name as station_name, wd.DMY as date
-                         FROM weather_data wd 
-                         INNER JOIN weather_station ws ON ws.site_id = wd.location
-                         INNER JOIN state s ON ws.state_id = s.id
-                         WHERE s.name = '{selected_state}' 
-                         AND wd.MaxTemp IS NOT NULL 
-                         AND TRIM(wd.MaxTemp) != ''
-                         AND wd.MaxTemp NOT LIKE '%NULL%'
-                         ORDER BY CAST(wd.MaxTemp AS REAL) DESC
-                         LIMIT 1"""
+        max_temp_query = f"""SELECT wd.MaxTemp, ws.name, wd.DMY
+                     FROM weather_data wd 
+                     JOIN weather_station ws ON ws.site_id = wd.location
+                     JOIN state s ON ws.state_id = s.id
+                     WHERE s.name = '{selected_state}' 
+                     AND wd.MaxTemp IS NOT NULL 
+                     ORDER BY CAST(wd.MaxTemp AS REAL) DESC
+                     LIMIT 1"""
         max_temp_result = pyhtml.get_results_from_query("database/climate.db", max_temp_query)
     
         if max_temp_result and len(max_temp_result) > 0:
-            highest_temp = f"{float(max_temp_result[0][0]):.1f}" if max_temp_result[0][0] else "No data"
-            highest_temp_station = max_temp_result[0][1] if max_temp_result[0][1] else ""
-            highest_temp_date = max_temp_result[0][2] if max_temp_result[0][2] else ""
+            highest_temp = f"{float(max_temp_result[0][0]):.1f}" 
+            highest_temp_station = max_temp_result[0][1] 
+            highest_temp_date = max_temp_result[0][2]
         else:
             highest_temp = "No data"
             highest_temp_station = ""
@@ -43,22 +41,20 @@ def get_page_html(form_data):
         
         # THIS IS TO FIND THE LOWEST TEMPERATURE RECORDED IN THE STATE
         
-        min_temp_query = f"""SELECT wd.MinTemp as lowest_temp, ws.name as station_name, wd.DMY as date
-                         FROM weather_data wd 
-                         INNER JOIN weather_station ws ON ws.site_id = wd.location
-                         INNER JOIN state s ON ws.state_id = s.id
-                         WHERE s.name = '{selected_state}' 
-                         AND wd.MinTemp IS NOT NULL 
-                         AND TRIM(wd.MinTemp) != ''
-                         AND wd.MinTemp NOT LIKE '%NULL%'
-                         ORDER BY CAST(wd.MinTemp AS REAL) ASC
-                         LIMIT 1"""
+        min_temp_query = f"""SELECT wd.MinTemp, ws.name, wd.DMY
+                     FROM weather_data wd 
+                     JOIN weather_station ws ON ws.site_id = wd.location
+                     JOIN state s ON ws.state_id = s.id
+                     WHERE s.name = '{selected_state}' 
+                     AND wd.MinTemp IS NOT NULL 
+                     ORDER BY CAST(wd.MinTemp AS REAL) ASC
+                     LIMIT 1"""
         min_temp_result = pyhtml.get_results_from_query("database/climate.db", min_temp_query)
     
         if min_temp_result and len(min_temp_result) > 0:
-            lowest_temp = f"{float(min_temp_result[0][0]):.1f}" if min_temp_result[0][0] else "No data"
-            lowest_temp_station = min_temp_result[0][1] if min_temp_result[0][1] else ""
-            lowest_temp_date = min_temp_result[0][2] if min_temp_result[0][2] else ""
+            lowest_temp = f"{float(min_temp_result[0][0]):.1f}"
+            lowest_temp_station = min_temp_result[0][1] 
+            lowest_temp_date = min_temp_result[0][2] 
         else:
             lowest_temp = "No data"
             lowest_temp_station = ""
@@ -66,22 +62,20 @@ def get_page_html(form_data):
 
         # THIS IS TO FIND THE HIGHEST RAINFALL IN MM WITHIN THE STATE
 
-        max_rain_query = f"""SELECT wd.Precipitation as max_rainfall, ws.name as station_name, wd.DMY as date
-                         FROM weather_data wd 
-                         INNER JOIN weather_station ws ON ws.site_id = wd.location
-                         INNER JOIN state s ON ws.state_id = s.id
-                         WHERE s.name = '{selected_state}' 
-                         AND wd.Precipitation IS NOT NULL 
-                         AND TRIM(wd.Precipitation) != ''
-                         AND wd.Precipitation NOT LIKE '%NULL%'
-                         ORDER BY CAST(wd.Precipitation AS REAL) DESC
-                         LIMIT 1"""
+        max_rain_query = f"""SELECT wd.Precipitation, ws.name, wd.DMY
+                     FROM weather_data wd 
+                     JOIN weather_station ws ON ws.site_id = wd.location
+                     JOIN state s ON ws.state_id = s.id
+                     WHERE s.name = '{selected_state}' 
+                     AND wd.Precipitation IS NOT NULL 
+                     ORDER BY CAST(wd.Precipitation AS REAL) DESC
+                     LIMIT 1"""
         max_rain_result = pyhtml.get_results_from_query("database/climate.db", max_rain_query)
     
         if max_rain_result and len(max_rain_result) > 0:
-            max_rainfall = f"{float(max_rain_result[0][0]):.1f}" if max_rain_result[0][0] else "No data"
-            max_rain_station = max_rain_result[0][1] if max_rain_result[0][1] else ""
-            max_rain_date = max_rain_result[0][2] if max_rain_result[0][2] else ""
+            max_rainfall = f"{float(max_rain_result[0][0]):.1f}"
+            max_rain_station = max_rain_result[0][1] 
+            max_rain_date = max_rain_result[0][2] 
         else:
             max_rainfall = "No data"
             max_rain_station = ""
@@ -98,16 +92,13 @@ def get_page_html(form_data):
         <header>
             <nav class="navbar">
                 <ul>
-                    <li><a href ="LandingPage.html">
-                        <img src="without background.png"
-                        height = 80>
-
-                    </a>
-                    </li>
-                    <li><a href ="student_a_level_1.py">Home</a></li>
-                    <li><a href ="student_b_level_1">Our Mission</a></li>
-                    <li><a href ="tools.html">Our Tools</a></li>
-                    <li><a href ="Contact.html">Contact Us</a></li>
+                    <li><a href="http://localhost/">
+                        <img src="without background.png" height=80>
+                    </a></li>
+                    <li><a href="http://localhost/">Home</a></li>
+                    <li><a href="http://localhost/page1b">Our Mission</a></li>
+                    <li><a href="tools.html">Our Tools</a></li>
+                    <li><a href="Contact.html">Contact Us</a></li>
                 </ul>
             </nav>
         </header>
@@ -123,6 +114,8 @@ def get_page_html(form_data):
 
 
         </div>
+        
+        
         <br>
         <br>
         <br>
@@ -155,7 +148,7 @@ def get_page_html(form_data):
             <select id="AustralianState" name ="state">
                 {"".join([f'<option value="{state[0]}" {"selected" if state[0] == selected_state else ""}>{state[0]}</option>' for state in states_results])}
             </select>
-            <input type="Submit" value="Check State">
+            <input type="Submit" value="Check State" style="background-color: hsl(207, 100%, 50%); color: white; border: none; padding: 10px 20px; cursor: pointer;">
         </form>    
 
         <div class="container">

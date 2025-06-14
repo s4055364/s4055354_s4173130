@@ -16,34 +16,34 @@ def get_page_html(form_data):
     all_regions_results = []  
 
     weather_metrics = [
-        ("Precipitation", "Precipitation in the 24 hours before 9am (local time). In mm."),
-        ("Evaporation", "Evaporation in 24 hours before 9am (local time). In mm."),
-        ("MaxTemp", "Maximum temperature in 24 hours after 9am (local time). In Degrees C."),
-        ("MinTemp", "Minimum temperature in 24 hours before 9am (local time). In Degrees C."),
-        ("Humid00", "Relative humidity at 00 hours Local Time. In percentage %."),
-        ("Humid03", "Relative humidity at 03 hours Local Time. In percentage %."),
-        ("Humid06", "Relative humidity at 06 hours Local Time. In percentage %."),
-        ("Humid09", "Relative humidity at 09 hours Local Time. In percentage %."),
-        ("Humid12", "Relative humidity at 12 hours Local Time. In percentage %."),
-        ("Humid15", "Relative humidity at 15 hours Local Time. In percentage %."),
-        ("Humid18", "Relative humidity at 18 hours Local Time. In percentage %."),
-        ("Humid21", "Relative humidity at 21 hours Local Time. In percentage %."),
-        ("Sunshine", "Number of hours of bright sunshine in the 24 hours midnight to midnight (local time)."),
-        ("Okta00", "Total cloud amount at 00 hours Local Time"),
-        ("Okta03", "Total cloud amount at 03 hours Local Time"),
-        ("Okta06", "Total cloud amount at 06 hours Local Time"),
-        ("Okta09", "Total cloud amount at 09 hours Local Time"),
-        ("Okta12", "Total cloud amount at 12 hours Local Time"),
-        ("Okta15", "Total cloud amount at 15 hours Local Time"),
-        ("Okta18", "Total cloud amount at 18 hours Local Time"),
-        ("Okta21", "Total cloud amount at 21 hours Local Time"),
+        ("Precipitation", "Precipitation"),
+        ("Evaporation", "Evaporation in a day"),
+        ("MaxTemp", "Maximum temperature in a day"),
+        ("MinTemp", "Minimum temperature in a day"),
+        ("Humid00", "Relative humidity at 12 AM"),
+        ("Humid03", "Relative humidity at 3 AM"),
+        ("Humid06", "Relative humidity at 6 AM"),
+        ("Humid09", "Relative humidity at 9 AM"),
+        ("Humid12", "Relative humidity at 12 PM"),
+        ("Humid15", "Relative humidity at 3 PM"),
+        ("Humid18", "Relative humidity at 6 PM"),
+        ("Humid21", "Relative humidity at 9 PM"),
+        ("Sunshine", "Hours of sunshine in a day"),
+        ("Okta00", "Cloudiness at 12 AM"),
+        ("Okta03", "Cloudiness at 3 AM"),
+        ("Okta06", "Cloudiness at 6 AM"),
+        ("Okta09", "Cloudiness at 9 AM"),
+        ("Okta12", "Cloudiness at 12 PM"),
+        ("Okta15", "Cloudiness at 3 PM"),
+        ("Okta18", "Cloudiness at 6 PM"),
+        ("Okta21", "Cloudiness at 9 PM"),
     ]
     
     if form_data:
-        selected_state = form_data.get("state")[0] if form_data.get("state") else False
-        starting_lat = form_data.get('start_lat')[0] if form_data.get('start_lat') else False
-        ending_lat = form_data.get('ending_lat')[0] if form_data.get('ending_lat') else False
-        weather_metric = form_data.get("metric")[0] if form_data.get("metric") else False
+        selected_state = form_data.get("state")[0] 
+        starting_lat = form_data.get('start_lat')[0] 
+        ending_lat = form_data.get('ending_lat')[0] 
+        weather_metric = form_data.get("metric")[0] 
 
     print(f"Extracted values - State: {selected_state}, Start: {starting_lat}, End: {ending_lat}", flush=True)
 
@@ -84,58 +84,75 @@ def get_page_html(form_data):
         <meta charset="UTF-8"> 
         <title>Level2A</title>
         <link rel="stylesheet" href="level2A.css">
+        <script>
+            function printTable() {{
+                window.print();
+                }}
+        </script>        
+        
     </head>    
         
     <body>
         <nav class="navbar">
             <ul>
-                <li><a href="LandingPage.html">
-                    <img src="without background.png" height=80>
-                </a></li>
-                <li><a href="LandingPage.html">Home</a></li>
-                <li><a href="Mission.html">Our Mission</a></li>
-                <li><a href="tools.html">Our Tools</a></li>
-                <li><a href="Contact.html">Contact Us</a></li>
+                    <li><a href="http://localhost/">
+                        <img src="without background.png" height=80>
+                    </a></li>
+                    <li><a href="http://localhost/">Home</a></li>
+                    <li><a href="http://localhost/page1b">Our Mission</a></li>
+                    <li><a href="tools.html">Our Tools</a></li>
+                    <li><a href="Contact.html">Contact Us</a></li>
             </ul>
         </nav>
         
         <h1>View Climate Change by Region</h1>
         <br>
+        <div class="home-container" style="text-align: right;">
+            <h3 style="display: inline-block;">Click here to go back to the home page:</h3>
+            <a href="/" style="background-color: hsl(207, 100%, 50%); color: white; border: none; padding: 10px 20px; cursor: pointer;" class="home-button">Home</a>
+        </div>
         
-        <form method="GET">
-            <h2>Select your desired state:</h2>
-            <select id="AustralianState" name="state">
-                {"".join([f'<option value="{state[0]}" {"selected" if state[0] == selected_state else ""}>{state[0]}</option>' for state in states_results])}
-            </select>
+        <div class="content-wrapper">
+            <div class="form-section" style="float: left; width: 35%;">
+                <form method="GET">
+                    <h2>Select your desired state:</h2>
+                    <select id="AustralianState" name="state">
+                        {"".join([f'<option value="{state[0]}" {"selected" if state[0] == selected_state else ""}>{state[0]}</option>' for state in states_results])}
+                    </select>
 
-            <h2>Enter your starting and ending latitude</h2>
-            <h5>Please note that Australia is within a negative latitude. Therefore starting latitude must be 0 and below</h5>
-            <label for="Starting Latitude">Starting Latitude:</label>
-            <input type='text' id="Starting Latitude" name='start_lat' value="{starting_lat if starting_lat else ''}" placeholder="Eg -10">
-            <label for="Ending Latitude">Ending Latitude:</label>
-            <input type='text' id="Ending Latitude" name='ending_lat' value="{ending_lat if ending_lat else ''}" placeholder="Eg -45">
+                    <h2>Enter your starting and ending latitude</h2>
+                    <h5>Please note that Australia is within a negative latitude. Therefore starting latitude must be 0 and below</h5>
+                    <h5>Additionally also note that Starting Latitude must be a higher value than Ending Latitude</h5>
+                    <label for="Starting Latitude">Starting Latitude:</label>
+                    <input type='text' id="Starting Latitude" name='start_lat' value="{starting_lat if starting_lat else ''}" placeholder="Eg -10">
+                    <label for="Ending Latitude">Ending Latitude:</label>
+                    <input type='text' id="Ending Latitude" name='ending_lat' value="{ending_lat if ending_lat else ''}" placeholder="Eg -45">
+                    <br><br><br><br>
+                    <h2>Select a weather metric to analyze</h2>
+                    <select name="metric" id="metric" required>
+                        <option value="">Choose a metric...</option>
+                        {"".join([f'<option value="{metric[0]}" {"selected" if weather_metric == metric[0] else ""}>{metric[1]}</option>' for metric in weather_metrics])}
+                    </select>    
+                    
+                    <br><br><br><br><br><br>
+                    <input type="Submit" value="Analyze" style="background-color: hsl(207, 100%, 50%); color: white; border: none; padding: 10px 20px; cursor: pointer;">
+                    <input type="reset" style="background-color: hsl(207, 100%, 50%); color: white; border: none; padding: 10px 20px; cursor: pointer;">
+                </form>
+            </div>
             
-            <h2>Select a weather metric to analyze</h2>
-            <select name="metric" id="metric" required>
-                <option value="">Choose a metric...</option>
-                {"".join([f'<option value="{metric[0]}" {"selected" if weather_metric == metric[0] else ""}>{metric[1]}</option>' for metric in weather_metrics])}
-            </select>    
-            
-            <br><br>
-            <input type="Submit" value="Analyze">
-            <input type="Reset">
-        </form>
-        
-        <article>"""
+            <div id="printable-table" class="table-section" style="float: left; width: 60%;">
+                <article>
+                """
 
     # CREATION OF THE FIRST TABLE
     if state_latitude_results:
         page_html += """
         <br>
+        <button class="print-button no-print" onclick="printTable()" style="background-color: hsl(207, 100%, 50%); color: white; border: none; padding: 10px 20px; cursor: pointer;">Print Table</button>
         <h3>Weather Stations in Selected Area:</h3>
         <table border='1'>
-            <tr>
-                <th>Site ID</th>
+            <tr align="center" style="background-color: hsl(207, 100%, 50%)">
+                <th>Station ID</th>
                 <th>Station Name</th>
                 <th>Latitude</th>
                 <th>Longitude</th>
@@ -162,17 +179,17 @@ def get_page_html(form_data):
         elif weather_metric == "MinTemp":
             metric_display_name = "Min Temperature (°C)"
         elif weather_metric.startswith("Humid"):
-            metric_display_name = f"Humidity {weather_metric[5:]} hrs (%)"
+            metric_display_name = f"Humidity {weather_metric[5:]} (%)"
         elif weather_metric == "Sunshine":
             metric_display_name = "Sunshine (hours)"
         elif weather_metric.startswith("Okta"):
-            metric_display_name = f"Cloud Cover {weather_metric[4:]} hrs"
+            metric_display_name = f"Cloud Cover {weather_metric[4:]} hours"
     
         page_html += f"""
         <br><br>
         <h3>All regions within {selected_state} and the analyzed weather metric</h3>
         <table border='1'>
-            <tr>
+            <tr align="center" style="background-color: hsl(207, 100%, 50%)">
                 <th>Region</th>
                 <th>Number Weather Stations</th>
                 <th>Average {metric_display_name}</th>
@@ -189,18 +206,21 @@ def get_page_html(form_data):
         page_html += "</table>"
 
     page_html += """    
-        </article>
+                </article>
+            </div>
+        </div>
+        <div style="clear: both;"></div>
         <br><br><br><br>
         
         <nav class="navbar">
             <ul>
-                <li><a href="LandingPage.html">
-                    <img src="without background.png" height=80>
-                </a></li>
-                <li><a href="LandingPage.html">Home</a></li>
-                <li><a href="Mission.html">Our Mission</a></li>
-                <li><a href="tools.html">Our Tools</a></li>
-                <li><a href="Contact.html">Contact Us</a></li>
+                    <li><a href="http://localhost/">
+                        <img src="without background.png" height=80>
+                    </a></li>
+                    <li><a href="http://localhost/">Home</a></li>
+                    <li><a href="http://localhost/page1b">Our Mission</a></li>
+                    <li><a href="tools.html">Our Tools</a></li>
+                    <li><a href="Contact.html">Contact Us</a></li>
             </ul>
         </nav>
     </body>

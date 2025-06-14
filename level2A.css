@@ -68,3 +68,18 @@ h1{
 .dropdown{
     display: inline-block;
 }
+
+@media print {
+    
+    * {
+        display: none !important;
+    }
+    #printable-table,
+    #printable-table * {
+        display: block !important;
+        visibility: visible !important;
+    }
+    .no-print {
+        display: none !important;
+    }
+}
