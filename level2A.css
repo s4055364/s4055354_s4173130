@@ -69,14 +69,17 @@ h1{
     display: inline-block;
 }
 
-input[type="submit"] {
-    background-color: hsl(207, 100%, 50%);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-input[type="submit"]:hover {
-    background-color: hsl(207, 100%, 40%);
+@media print {
+    
+    * {
+        display: none !important;
+    }
+    #printable-table,
+    #printable-table * {
+        display: block !important;
+        visibility: visible !important;
+    }
+    .no-print {
+        display: none !important;
+    }
 }

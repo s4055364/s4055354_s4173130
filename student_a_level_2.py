@@ -84,6 +84,12 @@ def get_page_html(form_data):
         <meta charset="UTF-8"> 
         <title>Level2A</title>
         <link rel="stylesheet" href="level2A.css">
+        <script>
+            function printTable() {{
+                window.print();
+                }}
+        </script>        
+        
     </head>    
         
     <body>
@@ -107,7 +113,7 @@ def get_page_html(form_data):
         </div>
         
         <div class="content-wrapper">
-            <div class="form-section" style="float: left; width: 45%;">
+            <div class="form-section" style="float: left; width: 35%;">
                 <form method="GET">
                     <h2>Select your desired state:</h2>
                     <select id="AustralianState" name="state">
@@ -134,13 +140,15 @@ def get_page_html(form_data):
                 </form>
             </div>
             
-            <div class="table-section" style="float: right; width: 45%;">
-                <article>"""
+            <div id="printable-table" class="table-section" style="float: left; width: 60%;">
+                <article>
+                """
 
     # CREATION OF THE FIRST TABLE
     if state_latitude_results:
         page_html += """
         <br>
+        <button class="print-button no-print" onclick="printTable()" style="background-color: hsl(207, 100%, 50%); color: white; border: none; padding: 10px 20px; cursor: pointer;">Print Table</button>
         <h3>Weather Stations in Selected Area:</h3>
         <table border='1'>
             <tr align="center" style="background-color: hsl(207, 100%, 50%)">
