@@ -107,7 +107,7 @@ def get_page_html(form_data):
         <div class="noDecaration" id="missionstatbox">
             <div id="missionbox">
                 <div class="noDecaration" id="missionbutton">
-                    <a href="Mission.html">Click here</a>
+                    <a href="http://localhost/page1b">Click here</a>
                     
                 </div>
             </div>    
@@ -121,19 +121,20 @@ def get_page_html(form_data):
         <br>
         <h1>Our Tools</h1>
         <h2>Our Data uses data from 1970-2020</h2>
+        <h3>You can click on the boxes!</h3>
         <div class="container">
-            <a href="tool1.html">
+            <a href="http://localhost/page2a">
                 <div class="box" id="box1">View Climate Data by Region</div>
             </a>
-            <a href="tool2.hmtl">
+            <a href="http://localhost/page2b">
                 <div class="box" id="box2">View Climate change by Metric</div>
             </a>
             
-            <a href="tool4.html">
+            <a href="http://localhost/page3a">
                 <div class="box" id="box3">Find Stations With Similar Rate of Change</div>
             </a>
             
-            <a href="tool4.html">
+            <a href="http://localhost/page3b">
                 <div class="box" id="box4">Explore Australia's Climate Over time</div>
             </a>
         </div>
@@ -182,18 +183,16 @@ def get_page_html(form_data):
         <br>
         <br>
    
-      <nav class="navbar">
-            <ul>
-                <li><a href ="LandingPage.html">
-                    <img src="without background.png"
-                    height = 80>
-                </a>
-                </li>
-                <li><a href ="LandingPage.html">Home</a></li>
-                <li><a href ="Mission.html">Our Mission</a></li>
-                <li><a href ="tools.html">Our Tools</a></li>
-                <li><a href ="Contact.html">Contact Us</a></li>
-            </ul>
+        <nav class="navbar">
+                <ul>
+                    <li><a href="http://localhost/">
+                        <img src="without background.png" height=80>
+                    </a></li>
+                    <li><a href="http://localhost/">Home</a></li>
+                    <li><a href="http://localhost/page1b">Our Mission</a></li>
+                    <li><a href="tools.html">Our Tools</a></li>
+                    <li><a href="Contact.html">Contact Us</a></li>
+                </ul>
         </nav>
     </body>
     </html>

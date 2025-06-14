@@ -96,7 +96,7 @@ def get_page_html(form_data):
         
     <body>
         <nav class="navbar">
-            <ul>
+                <ul>
                     <li><a href="http://localhost/">
                         <img src="without background.png" height=80>
                     </a></li>
@@ -104,7 +104,7 @@ def get_page_html(form_data):
                     <li><a href="http://localhost/page1b">Our Mission</a></li>
                     <li><a href="tools.html">Our Tools</a></li>
                     <li><a href="Contact.html">Contact Us</a></li>
-            </ul>
+                </ul>
         </nav>
         
         <h1>Find Stations with Similar Rate of Change</h1>
@@ -138,24 +138,19 @@ def get_page_html(form_data):
                     </select>
                     
                     <h2>Number of Similar Stations to Find:</h2>
-                    <input type="number" name="num_stations" value="{num_stations if num_stations else ''}" 
-                           placeholder="e.g., 3" min="1" max="20" required>
+                    <input type="number" name="num_stations" value="{num_stations if num_stations else ''}" placeholder="e.g., 3" min="1" max="20" required>
                     
                     <h2>Time Period 1:</h2>
                     <label for="start_date1">Start Date:</label>
-                    <input type="date" id="start_date1" name="start_date1" 
-                           value="{start_date1 if start_date1 else ''}" required>
+                    <input type="date" id="start_date1" name="start_date1" value="{start_date1 if start_date1 else ''}" required>
                     <label for="end_date1">End Date:</label>
-                    <input type="date" id="end_date1" name="end_date1" 
-                           value="{end_date1 if end_date1 else ''}" required>
+                    <input type="date" id="end_date1" name="end_date1" value="{end_date1 if end_date1 else ''}" required>
                     
                     <h2>Time Period 2:</h2>
                     <label for="start_date2">Start Date:</label>
-                    <input type="date" id="start_date2" name="start_date2" 
-                           value="{start_date2 if start_date2 else ''}" required>
+                    <input type="date" id="start_date2" name="start_date2" value="{start_date2 if start_date2 else ''}" required>
                     <label for="end_date2">End Date:</label>
-                    <input type="date" id="end_date2" name="end_date2" 
-                           value="{end_date2 if end_date2 else ''}" required>
+                    <input type="date" id="end_date2" name="end_date2" value="{end_date2 if end_date2 else ''}" required>
                     
                     <br><br>
                     <input type="submit" value="Find Similar Stations" style="background-color: hsl(207, 100%, 50%); color: white; border: none; padding: 10px 20px; cursor: pointer;">
@@ -203,7 +198,7 @@ def get_page_html(form_data):
         <br><br><br><br>
         
         <nav class="navbar">
-            <ul>
+                <ul>
                     <li><a href="http://localhost/">
                         <img src="without background.png" height=80>
                     </a></li>
@@ -211,7 +206,7 @@ def get_page_html(form_data):
                     <li><a href="http://localhost/page1b">Our Mission</a></li>
                     <li><a href="tools.html">Our Tools</a></li>
                     <li><a href="Contact.html">Contact Us</a></li>
-            </ul>
+                </ul>
         </nav>
     </body>
     </html>

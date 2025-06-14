@@ -15,6 +15,7 @@ def get_page_html(form_data):
     state_latitude_results = []
     all_regions_results = []  
 
+    #EDIT VERY ON 14/6/2025, I HAVE REALIZED THAT WE ARE MEANT TO HAVE A TABLE IN OUR SQL DATABASE THAT HAS ALL OF THESE WEATHER METRICS AND THEIR DESCRIPTIONS AND HAVE SINCE ADDED THEM,. I'M NOT REDOING ALL OF MY CODE TO ACCOMODATE FOR THIS.
     weather_metrics = [
         ("Precipitation", "Precipitation"),
         ("Evaporation", "Evaporation in a day"),
@@ -113,16 +114,16 @@ def get_page_html(form_data):
         
     <body>
         <nav class="navbar">
-            <ul>
-                <li><a href="http://localhost/">
-                    <img src="without background.png" height=80>
-                </a></li>
-                <li><a href="http://localhost/">Home</a></li>
-                <li><a href="http://localhost/page1b">Our Mission</a></li>
-                <li><a href="tools.html">Our Tools</a></li>
-                <li><a href="Contact.html">Contact Us</a></li>
-            </ul>
-        </nav>
+                <ul>
+                    <li><a href="http://localhost/">
+                        <img src="without background.png" height=80>
+                    </a></li>
+                    <li><a href="http://localhost/">Home</a></li>
+                    <li><a href="http://localhost/page1b">Our Mission</a></li>
+                    <li><a href="tools.html">Our Tools</a></li>
+                    <li><a href="Contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
         
         <h1>View Climate Change by Region</h1>
         <br>
@@ -143,9 +144,9 @@ def get_page_html(form_data):
                     <h5>Please note that Australia is within a negative latitude. Therefore starting latitude must be 0 and below</h5>
                     <h5>Additionally also note that Starting Latitude must be a higher value than Ending Latitude</h5>
                     <label for="Starting Latitude">Starting Latitude:</label>
-                    <input type='text' id="Starting Latitude" name='start_lat' value="{starting_lat if starting_lat else ''}" placeholder="Eg -10">
+                    <input type='text' id="Starting Latitude" name='start_lat' value="{starting_lat if starting_lat else ''}" placeholder="Eg -10" required>
                     <label for="Ending Latitude">Ending Latitude:</label>
-                    <input type='text' id="Ending Latitude" name='ending_lat' value="{ending_lat if ending_lat else ''}" placeholder="Eg -45">
+                    <input type='text' id="Ending Latitude" name='ending_lat' value="{ending_lat if ending_lat else ''}" placeholder="Eg -45" required>
                     <br><br><br><br>
                     <h2>Select a weather metric to analyze</h2>
                     <select name="metric" id="metric" required>
@@ -239,15 +240,15 @@ def get_page_html(form_data):
         <br><br><br><br>
         
         <nav class="navbar">
-            <ul>
-                <li><a href="http://localhost/">
-                    <img src="without background.png" height=80>
-                </a></li>
-                <li><a href="http://localhost/">Home</a></li>
-                <li><a href="http://localhost/page1b">Our Mission</a></li>
-                <li><a href="tools.html">Our Tools</a></li>
-                <li><a href="Contact.html">Contact Us</a></li>
-            </ul>
+                <ul>
+                    <li><a href="http://localhost/">
+                        <img src="without background.png" height=80>
+                    </a></li>
+                    <li><a href="http://localhost/">Home</a></li>
+                    <li><a href="http://localhost/page1b">Our Mission</a></li>
+                    <li><a href="tools.html">Our Tools</a></li>
+                    <li><a href="Contact.html">Contact Us</a></li>
+                </ul>
         </nav>
     </body>
     </html>
