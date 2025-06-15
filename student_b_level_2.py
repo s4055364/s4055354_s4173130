@@ -82,7 +82,12 @@ def get_page_html(form_data):
         results = pyhtml.get_results_from_query("database/climate.db", sql_query)
 
         if results:
-            page_html += "<p>Showing up to 100 results.</p><table border='1'><tr>"
+            page_html += """
+                      <p>Showing up to 100 results.</p>
+                      <div class="data-box-table-wrapper">
+                        <table>
+                        <tr>"""
+
             for col in results[0]:
                 page_html += f"<th>{col}</th>"
             page_html += "</tr>"
@@ -92,7 +97,8 @@ def get_page_html(form_data):
                 for val in row:
                     page_html += f"<td>{val}</td>"
                 page_html += "</tr>"
-            page_html += "</table>"
+            page_html += "</tr></table></div>"
+
         else:
             page_html += "<p>No matching data found.</p>"
     except Exception as e:
