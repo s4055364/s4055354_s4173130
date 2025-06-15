@@ -17,9 +17,9 @@ def get_page_html(form_data):
   <!-- TOP NAVIGATION -->
     <nav class="navbar">
     <ul>
-      <li><a href="LandingPage.html"><img src="without background.png" height="60" alt="Logo"></a></li>
-      <li><a href="LandingPage.html">Home</a></li>
-      <li><a href="Mission.html">Our Mission</a></li>
+      <li><a href="http://localhost/"><img src="without background.png" height="60" alt="Logo"></a></li>
+      <li><a href="http://localhost/">Home</a></li>
+      <li><a href="http://localhost/page1b">Our Mission</a></li>
       <li class="dropdown">
         <a href="#">Our Tools</a>
 
