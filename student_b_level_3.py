@@ -35,26 +35,51 @@ def get_page_html(form_data):
   <div class="container">
     <h1>Climate Data</h1>
 
-    <div class="section">
-      <label>Select time period:</label>
-      <div class="inline-inputs">
-        <input type="text" placeholder="From (period)">
-        <input type="text" placeholder="Till (period)">
-      </div>
-      <small><i>+add another time period</i></small>
-    </div>
-
-    <div class="section">
-      <label>Choose a reference climate metric:</label>
-      <select>
-        <option value="" disabled selected style="color: grey;">climate</option>
+  <div class="section">
+    <label>Select time period:</label>
+    <div class="inline-inputs">
+      <select name="fromPeriod">
+        <option disabled selected>From (period)</option>
+        <option value="2000–2004">2000–2004</option>
+        <option value="2005–2009">2005–2009</option>
+        <option value="2010–2015">2010–2015</option>
+      </select>
+    
+      <select name="toPeriod">
+        <option disabled selected>Till (period)</option>
+        <option value="2005–2009">2005–2009</option>
+        <option value="2010–2015">2010–2015</option>
+        <option value="2016–2020">2016–2020</option>
       </select>
     </div>
+    <small><i>+add another time period</i></small>
+  </div>
 
-    <div class="section">
-      <label>Choose Number of climate metrics to find:</label>
-      <input type="number" min="1">
-    </div>
+
+  <div class="section">
+    <label>Choose a reference climate metric:</label>
+    <select name="climateMetric">
+      <option disabled selected>Choose metric</option>
+      <option value="Precipitation">Precipitation</option>
+      <option value="Evaporation">Evaporation</option>
+      <option value="Average Temp">Average Temp</option>
+      <option value="Sunshine">Sunshine</option>
+      <option value="Cloud Cover">Cloud Cover</option>
+    </select>
+  </div>
+
+
+  <div class="section">
+    <label>Choose number of climate metrics to find:</label>
+    <select name="numMetrics">
+      <option disabled selected>Choose a number</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </div>
 
     <div class="data-table">
       <label><strong>Data:</strong></label>
