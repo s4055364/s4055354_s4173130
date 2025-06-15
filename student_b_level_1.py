@@ -12,9 +12,10 @@ def get_page_html(form_data):
 <body>
   <nav class="navbar">
   <ul>
-    <li><a href="LandingPage.html"><img src="without background.png" height="60" alt="Logo"></a></li>
-    <li><a href="LandingPage.html">Home</a></li>
-    <li><a href="Mission.html">Our Mission</a></li>
+    <li><a href="http://localhost/"><img src="without background.png" height="60" alt="Logo"></a></li>
+    <li><a href="http://localhost/">Home</a></li>
+    <li><a href="http://localhost/page1b">Our Mission</a></li>
+
     <li class="Our Tools">
         <a href="#">Our Tools</a>
 
@@ -62,27 +63,29 @@ def get_page_html(form_data):
   <footer>
     <nav class="navbar">
   <ul>
-    <li><a href="LandingPage.html">Home</a></li>
-    <li><a href="Mission.html">Our Mission</a></li>
-    <li><a href="Contact.html">Contact Us</a></li>
+    <li><a href="http://localhost/">Home</a></li>
+    <li><a href="http://localhost/page1b">Our Mission</a></li>
+    <li><a href="http://localhost/Contact.html">Contact Us</a></li>
   </ul>
     </nav>
 </body>
 </html>
     """
     # Load personas from the database
-    persona_query = "SELECT name, occupation, image_path FROM personas"
+    persona_query = "SELECT name, occupation, age, image_path FROM personas"
     personas = pyhtml.get_results_from_query("database/climate.db", persona_query)
 
     personas_html = ""
-    for name, occupation, image_path in personas:
+    for name, occupation, age, image_path in personas:
         personas_html += f"""
         <div class="persona-box">
             <img src="{image_path}" width="100"><br>
             <strong>{name}</strong><br>
-            <em>{occupation}</em>
+            <em>{occupation}</em><br>
+            <span>Age: {age}</span>
         </div>
         """
+
 
     # Load students from the database
     student_query = "SELECT name, student_id FROM students"

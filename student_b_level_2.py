@@ -25,11 +25,11 @@ def get_page_html(form_data):
 <body>
   <nav class="navbar">
     <ul>
-      <li><a href="LandingPage.html"><img src="without background.png" height="60" alt="Logo" /></a></li>
-      <li><a href="LandingPage.html">Home</a></li>
-      <li><a href="Mission.html">Our Mission</a></li>
+      <li><a href="http://localhost/"><img src="without background.png" height="60" alt="Logo" /></a></li>
+      <li><a href="http://localhost/">Home</a></li>
+      <li><a href="http://localhost/page1b">Our Mission</a></li>
       <li><a href="#">Our Tools</a></li>
-      <li><a href="Contact.html">Contact Us</a></li>
+      <li><a href="http://localhost/Contact.html">Contact Us</a></li>
     </ul>
   </nav>
 
@@ -111,9 +111,9 @@ def get_page_html(form_data):
   <footer>
     <nav class="navbar">
       <ul>
-        <li><a href="LandingPage.html">Home</a></li>
-        <li><a href="Mission.html">Our Mission</a></li>
-        <li><a href="Contact.html">Contact Us</a></li>
+        <li><a href="http://localhost/">Home</a></li>
+        <li><a href="http://localhost/page1b">Our Mission</a></li>
+        <li><a href="http://localhost/Contact.html">Contact Us</a></li>
       </ul>
     </nav>
   </footer>
