@@ -71,18 +71,20 @@ def get_page_html(form_data):
 </html>
     """
     # Load personas from the database
-    persona_query = "SELECT name, occupation, image_path FROM personas"
+    persona_query = "SELECT name, occupation, age, image_path FROM personas"
     personas = pyhtml.get_results_from_query("database/climate.db", persona_query)
 
     personas_html = ""
-    for name, occupation, image_path in personas:
+    for name, occupation, age, image_path in personas:
         personas_html += f"""
         <div class="persona-box">
             <img src="{image_path}" width="100"><br>
             <strong>{name}</strong><br>
-            <em>{occupation}</em>
+            <em>{occupation}</em><br>
+            <span>Age: {age}</span>
         </div>
         """
+
 
     # Load students from the database
     student_query = "SELECT name, student_id FROM students"
