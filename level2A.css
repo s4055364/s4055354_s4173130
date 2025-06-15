@@ -1,17 +1,12 @@
-.navbar ul{
-    list-style-type: none;
-    background-color: hsl(207, 100%, 50%);
-    padding: 10%px;
-    margin: 0px;
-    overflow: hidden;
-    font-size: 2em;
-    align-items: center;
-    justify-content: space-evenly;
-}
+
 h1{
     text-align: center;
 
 }
+.navbar {
+  background-color: hsl(207, 100%, 50%);
+}
+
 .navbar > ul {
   list-style-type: none;
   margin: 0;
@@ -31,6 +26,10 @@ h1{
   padding: 15px 20px;
   display: block;
   text-align: center;
+}
+
+.navbar a:hover {
+  background-color: hsl(207, 100%, 50%);
 }
 
 .navbar a:hover {
