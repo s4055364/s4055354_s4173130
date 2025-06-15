@@ -76,17 +76,20 @@ h1{
 }
 
 @media print {
-    
-    * {
-        display: none !important;
+    body * {
+        visibility: hidden;
     }
-    #printable-table,
-    #printable-table * {
-        display: block !important;
-        visibility: visible !important;
+    #printable-content, 
+    #printable-content * {
+        visibility: visible;
+    }
+    #printable-content {
+        position: absolute;
+        left: 0;
+        top: 0;
     }
     .no-print {
-        display: none !important;
+        display: none;
     }
 }
 

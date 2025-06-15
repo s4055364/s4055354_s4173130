@@ -86,25 +86,6 @@ def get_page_html(form_data):
         <meta charset="UTF-8"> 
         <title>Level2A</title>
         <link rel="stylesheet" href="level2A.css" >
-        
-        <style>
-            @media print {{
-                body * {{
-                    visibility: hidden;
-                }}
-                #printable-content, #printable-content * {{
-                    visibility: visible;
-                }}
-                #printable-content {{
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                }}
-                .no-print {{
-                    display: none !important;
-                }}
-            }}
-        </style>
         <script>
             function printTable() {{
                 window.print();
