@@ -17,7 +17,7 @@ def get_page_html(form_data):
     <li><a href="http://localhost/page1b">Our Mission</a></li>
 
     <li class="Our Tools">
-        <a href="#">Our Tools</a>
+        <a href="http://localhost/">Our Tools</a>
 
     </li>
 
@@ -47,7 +47,10 @@ def get_page_html(form_data):
       </ol>
     </div>
 
-    <div class="find-out-box">Find out more</div>
+    <a href="http://localhost/page2b" style="text-decoration: none; color: inherit;">
+      <div class="find-out-box">Find out more</div>
+    </a>
+
 
     <h2>User Personas:</h2>
     <div class="user-personas">
