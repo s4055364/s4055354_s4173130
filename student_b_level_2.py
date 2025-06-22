@@ -3,7 +3,6 @@ import pyhtml
 def get_page_html(form_data):
     print("About to return page 2B")
 
-    # Get form inputs
     state = form_data.get("state", [""])[0]
     from_station = form_data.get("fromStation", [""])[0]
     to_station = form_data.get("toStation", [""])[0]
@@ -11,22 +10,22 @@ def get_page_html(form_data):
     end_date = form_data.get("endDate", [""])[0]
     selected_metric = form_data.get("metric", [""])[0]
 
-    # Get dynamic range and states
+    # get range for dates and stationid
     min_station = pyhtml.get_results_from_query("database/climate.db", "SELECT MIN(site_id) FROM weather_station")[0][0]
     max_station = pyhtml.get_results_from_query("database/climate.db", "SELECT MAX(site_id) FROM weather_station")[0][0]
     min_date = pyhtml.get_results_from_query("database/climate.db", "SELECT MIN(DMY) FROM weather_data")[0][0]
     max_date = pyhtml.get_results_from_query("database/climate.db", "SELECT MAX(DMY) FROM weather_data")[0][0]
     state_results = pyhtml.get_results_from_query("database/climate.db", "SELECT name FROM state ORDER BY name")
 
-    # Dynamically fetch column names from weather_data
+    # fetch column names
     col_query = "PRAGMA table_info(weather_data)"
     col_results = pyhtml.get_results_from_query("database/climate.db", col_query)
     metric_columns = [row[1] for row in col_results if row[1] not in ("location", "DMY")]
 
-    # Validate selected metric
+    
     selected_metric = selected_metric if selected_metric in metric_columns else metric_columns[0]
 
-    # Begin HTML
+    
     page_html = f"""<!DOCTYPE html>
 <html>
 <head>
